@@ -1,0 +1,42 @@
+//
+//  ViewController.m
+//  RSA_Test
+//
+//  Created by Macmini1 on 16/4/19.
+//  Copyright © 2016年 ytx. All rights reserved.
+//
+
+#import "ViewController.h"
+#import "RSA.h"
+
+//pubKey 须转换为pkcs8
+static NSString *pubKey = @"MIIBNzANBgkqhkiG9w0BAQEFAAOCASQAMIIBHwKCARYlPKeKi0wCtZO8DpwA+flnyN7u2/bHpeUq5DB+1oTwferudgn7Asyuva6ZR2qnYVZHJDxMWdupkV0Q8sdVco9wf5rrf3YRfiMzuCDX4Ag72E8B8R1G7oRTSFTiFHSK08lZmhtq0A2Q7Wa1jWJwsbvZuvw0v9MUIrQ9s/p29agNd6/Hy8fhkPr6R7KIZK8q3xsVUHP6ld0vIPVkbC+7hX4mBt0IH06i8o0Ofh67yZZt+9OJ2PAfsGIr8w7OIyhiHpdIU6kNq1/8ESS5pRwEKQ1KLZdRD7GMObxk+GfzoAHNS1QbRjCFg/SOgQPjaZiJk7DpSZwKkRwKAAIzVsxeIvxQ6KX/Nq3VLQxvbnh+hXuDWocz6xAV2QIDAQAB";
+static NSString *priKey = @"MIIFHAIBADANBgkqhkiG9w0BAQEFAASCBQYwggUCAgEAAoIBFiU8p4qLTAK1k7wOnAD5+WfI3u7b9sel5SrkMH7WhPB96u52CfsCzK69rplHaqdhVkckPExZ26mRXRDyx1Vyj3B/mut/dhF+IzO4INfgCDvYTwHxHUbuhFNIVOIUdIrTyVmaG2rQDZDtZrWNYnCxu9m6/DS/0xQitD2z+nb1qA13r8fLx+GQ+vpHsohkryrfGxVQc/qV3S8g9WRsL7uFfiYG3QgfTqLyjQ5+HrvJlm3704nY8B+wYivzDs4jKGIel0hTqQ2rX/wRJLmlHAQpDUotl1EPsYw5vGT4Z/OgAc1LVBtGMIWD9I6BA+NpmImTsOlJnAqRHAoAAjNWzF4i/FDopf82rdUtDG9ueH6Fe4NahzPrEBXZAgMBAAECggEWFd77VQ+eFJVL8Y/vJ0+ror7D2i3OU9Nnt/qRVV5wdMSwoWEpWYp6aEQ28gaVaTxtrZll5T5+G6mqrRK7678+6se4WYvi8EFTMcR7XfBTRbs2JKDXHltn03bPjH6ROR1NzVgLtIABB9e4lPg3EpQCDs+Z5O2qb9A2Z2t3uDlvfIGI+GQDwcQi9a/491riLlg6/h/KoxZ7AFJ2+LAMKekNpQC7ufUouXphVX0an2PRrPhHlsdsr15mYDNbf3torrg8LTvW9GEGrhXruPdIT+bEzXVL5pumMpJY02/EEo18e1B3AQP2kh12qXFbIw8O6BVGxEALpizvOFE+sgk2u98a/53IqYCcK+6iKtdLaruhoR4Old69cJUCgYth8XsSJNemthI9eifZEHUTL5+5b7aLiXEYGnXFoL5Pb2EIuQ7Psqp+bq4t8vgQRdl/Pk4Uj/LDZBXh4oMgmS9des0AmGoJqWYdO0pfls3DEWT8klUNsKdcd0Lmia0OUHQ7RPLh8TF4NtjDiXWIjWn/kFkahRJxF9XUeSfVkcylV82FfdSldT7PLjRLAoGLYVQMNs2kvCAk0WnClzvG5hmFSW3WXrsdV/aze5tsXwU/9kSu1viOb6NWBa2gozpDJOTsWWP1yepK8GwPfbKlbWcwJ4ptsmUwhYihmnBAVAHR/dfI+OcgLQ6DYm2zfGTBYyHXbf52aud4jDwe+YjPOG/u8OPzAt6QpSHs8u9qo3hztvjXrvk7LVMf6wKBi1DaPMOUoGViBhqz/bMl78+/z7YP73yvICpKpZBYiuIeStcdlYmFr1Mh4S3TVk5wqwRslZ5J2pjLxXisOZ0ud7hOiG8GYvrI2aAl8taIMiHm+Ru7XPUpMG+XkCWp369iYSEQYQR9zF21wSliDyGDw84SBkxrL/cmOwHkZira6jpQCjw5zNItwITdWpMCgYsZDU47iQE/HzL66DMbRFq0/ZquRORp69Xov2qBhYcGik5lcFZkpQPcvnk06vUvLp77zyT6+VzZxUHW0qnGHAayu13Mv7futFch+AJIw137gaBwq2tijfNdRaAR5NTPTwvsHVjbSiVm7P+9cPg0GL/l8gHZ5YK2mV039ByOh4u2WhnG3hR+SE6wIvZTAoGLE7JZY23FDjdiOozERBBtu2FFgH39FO3wLe6s6tsdjrP2hnSIEQ/bwwCALIP9y23k9MlH7sdc8aPbHZxPDs2Afjsf8ZhUml2YRF0RPB3wfnRoAdYERksjTQtnhAk+pTcT6NA+y3B0Eeiq86xMrs0mxKEUOJ4Yynk3KbhjNk3YodpcXv5/B43X8fvh6Q==";
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+    NSString *original = @"aaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaaaaaaaaaaaxaxaxaxaxaxaxaaheheheheheheheheheaaaaaaaaaaaaaxaa";
+    NSString *encStr = [RSA encryptString:original publicKey:pubKey];
+    NSLog(@"enc:%@",encStr);
+    NSString *decStr = [RSA decryptString:encStr privateKey:priKey];
+    NSLog(@"dec:%@",decStr);
+}
+
+- (int)getInt
+{
+    return 90;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@end
